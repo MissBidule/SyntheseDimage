@@ -1,42 +1,61 @@
-#include <iostream>
+#ifndef _UTILS_HPP_
+#define _UTILS_HPP_
 
+#include <iostream>
+#include <cmath>
+
+//basic vector3 for any use
 template <typename t>
 struct Vec3 {
     t x;
     t y;
     t z;
+
+    friend std::ostream& operator<<(std::ostream& os, const Vec3<t> v) {
+        os << "{" << v.x << ";" << v.y << ";" << v.z << "}";
+        return os;
+    };
+
+    Vec3<t> operator+(const Vec3<t> v) const {
+        return Vec3<t>{x+v.x, y+v.y, z+v.z};
+    };
+
+    Vec3<t> operator-(const Vec3<t> v) const {
+        return Vec3<t>{x-v.x, y-v.y, z-v.z};
+    };
+
+    template <typename u>
+    Vec3<t> operator*(u a) const {
+        return Vec3<t>{x * a, y * a, z * a};
+    };
+
+    template <typename u>
+    Vec3<t> operator/(u a) const {
+        return Vec3<t>{x / a, y / a, z / a};
+    };
+
+    bool operator==(const Vec3<t> v) const {
+        return ((x == v.x && y == v.y) && z == v.z);
+    };
+
+    bool operator!=(const Vec3<t> v) const {
+        return !operator==(v);
+    };
+
+    float dot(const Vec3<t> v) const {
+        return x*v.x + y*v.y + z*v.z;
+    };
+
+    Vec3<t> cross(const Vec3<t> v) const {
+        return Vec3<t>{y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x};
+    };
+
+    float length() const {
+        return std::sqrt(this->dot(*this));
+    }
 };
 
 using Vec3f = Vec3<float>;
 using Vec3i = Vec3<int>;
 
-template <typename t>
-Vec3<t> operator+(Vec3<t> v1, Vec3<t> v2) {
-    return Vec3<t>{v1.x+v2.x, v1.y+v2.y, v1.z+v2.z};
-};
-
-template <typename t>
-std::ostream& operator<<(std::ostream& os, Vec3<t> v) {
-    os << "{" << v.x << ";" << v.y << ";" << v.z << "}";
-    return os;
-};
-
-template <typename t>
-Vec3<t> operator-(Vec3<t> v1, Vec3<t> v2) {
-    return Vec3<t>{v1.x-v2.x, v1.y-v2.y, v1.z-v2.z};
-};
-
-template <typename t, typename u>
-Vec3<t> operator*(Vec3<t> v, u a) {
-    return Vec3<t>{v.x * a, v.y * a, v.z * a};
-};
-
-template <typename t>
-Vec3<t> scalar(Vec3<t> v1, Vec3<t> v2) {
-    return Vec3<t>{v1.x*v2.x, v1.y*v2.y, v1.z*v2.z};
-};
-
-template <typename t>
-Vec3<t> vectorProduct(Vec3<t> v1, Vec3<t> v2) {
-    return Vec3<t>{v1.y*v2.z - v1.z*v2.y, v1.z*v2.x - v1.x*v2.z, v1.x*v2.y - v1.y*v2.x};
-};
+#endif //_utils_hpp

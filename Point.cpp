@@ -8,6 +8,6 @@ Point::Point(const Vec3<float> vector) {
     data = vector;
 }
 
-void Point::translate(Direction dir) {
-    data = data + dir.vector();
+Point Point::translate(Direction dir) {
+    return Point(data + dir.vector());
 }
