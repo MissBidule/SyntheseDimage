@@ -3,7 +3,7 @@
 class Color {
 public :
     Color(float r, float g, float b);
-    Color(const Vec3<float> vector);
+    Color(const Vec3f vector);
 
     inline float r() const {return data.x;};
     inline float g() const {return data.y;};
@@ -13,13 +13,13 @@ public :
     inline void b(float blue)   {data.z = blue;};
 
 private :
-    Vec3<float> data;
+    Vec3f data;
 };
 
 class Point {
 public :
     Point(float x, float y, float z=0);
-    Point(const Vec3<float> vector);
+    Point(const Vec3f vector);
 
     inline float x() const {return data.x;};
     inline float y() const {return data.y;};
@@ -31,18 +31,18 @@ public :
     void translate(Direction dir);
 
 private :
-    Vec3<float> data;
+    Vec3f data;
 };
 
 class Direction {
 public :
     Direction(float x, float y, float z);
-    Direction(const Vec3<float> vector);
+    Direction(const Vec3f vector);
 
     inline float x() const {return data.x;};
     inline float y() const {return data.y;};
     inline float z() const {return data.z;};
-    inline Vec3<float> vector() const {return data;};
+    inline Vec3f vector() const {return data;};
     inline void x(float xCoord) {data.x = xCoord;};
     inline void y(float yCoord) {data.y = yCoord;};
     inline void z(float zCoord) {data.z = zCoord;};
@@ -50,16 +50,10 @@ public :
     Direction operator+(Direction dir) const;
 
 private :
-    Vec3<float> data;
+    Vec3f data;
 };
 
-/*
-struct Texture {
-    GLuint ka;
-    GLuint kd;
-    GLuint ks;
-
-    float shininess;
-    float opacity;
+class Transmission {
+private:
+    Vec3f data;
 };
-*/

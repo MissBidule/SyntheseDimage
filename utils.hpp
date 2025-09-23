@@ -7,6 +7,9 @@ struct Vec3 {
     t z;
 };
 
+using Vec3f = Vec3<float>;
+using Vec3i = Vec3<int>;
+
 template <typename t>
 Vec3<t> operator+(Vec3<t> v1, Vec3<t> v2) {
     return Vec3<t>{v1.x+v2.x, v1.y+v2.y, v1.z+v2.z};
