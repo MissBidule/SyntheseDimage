@@ -67,12 +67,20 @@ void Vec3Tests::launchTests() {
         assert(vectori1.cross(vectori2) == (Vec3i{-2, 4, -2}));
     }
 
-    {//length
+    {//norm
         Vec3i vectoriSimple{1, 0, 0};
         Vec3i vectoriBis{2, 4, 4};
 
-        assert(vectoriSimple.length() == 1);
-        assert(vectoriBis.length() == 6);
+        assert(vectoriSimple.norm() == 1);
+        assert(vectoriBis.norm() == 6);
+    }
+
+    {//normalize
+        Vec3i vectoriSimple{2, 0, 0};
+        Vec3i vectoriBis{2, 2, 2};
+
+        assert(vectoriSimple.normalize() == (Vec3f{1, 0, 0}));
+        assert(vectoriBis.normalize() == (Vec3f{1, 1, 1}));
     }
     
     endTest();

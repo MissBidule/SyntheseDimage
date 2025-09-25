@@ -50,9 +50,17 @@ struct Vec3 {
         return Vec3<t>{y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x};
     };
 
-    float length() const {
+    float norm() const {
         return std::sqrt(this->dot(*this));
-    }
+    };
+
+    Vec3<float> normalize() const {
+        const float normVec = norm();
+        if (normVec == 0) {
+            return {};
+        }
+        return Vec3<float>{(float)x / norm(), (float)y / norm(), (float)z / norm()};
+    };
 };
 
 using Vec3f = Vec3<float>;

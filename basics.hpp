@@ -57,9 +57,9 @@ private :
     Vec3f data;
 };
 
-class Transmission {
+/*class Transmission {
 private:
     Vec3f data;
-};
+};*/
 
 #endif //_BASICS_HPP_
